@@ -2,11 +2,43 @@
 <web-app >
   <display-name>hero</display-name>
   <welcome-file-list>
-    <welcome-file>Hero.jsp</welcome-file>
+    <welcome-file>home</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+
+
+<servlet>
+    <servlet-name>HomeServlet</servlet-name>
+    <servlet-class>com.ekart.servlets.HomeServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>HomeServlet</servlet-name>
+    <url-pattern>/home</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.ekart.servlets.LoginServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+</servlet-mapping>
+
+<servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.ekart.servlets.RegisterServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/createUser</url-pattern>
+</servlet-mapping>
+
+
+
 </web-app>

@@ -1,22 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" 
+
+	import="com.ekart.models.*,java.util.List,java.util.ArrayList"
+contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>E-Kart</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<style>
-#last{
-justify-content: space-between;
-}
-</style>
 </head>
 <body>
 <header>
 <nav class="navbar-sticky bg-fixed-white navbar-airy navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a aria-label="Back to homepage" href="#" class="py-1 navbar-brand">My Logo</a>
+        <a aria-label="Back to homepage" href="#" class="py-1 navbar-brand">E-Kart</a>
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
@@ -25,7 +24,16 @@ justify-content: space-between;
                 <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
             </ul>
             <div class="nav-item navbar-icon-link " >
-            	<a class="text-dark" aria-label="Log in" href="customer-login.jsp">Log in</a></div>
+            	<% if (session.getAttribute("LOGGEDIN") != null && session.getAttribute("LOGGEDIN").equals("yes")) {
+			    			String username = (String) session.getAttribute("USERNAME");
+				%>
+					<span>Welcome, <%= username %></span>
+			
+				<%} else { %>
+						<a class="text-dark" href="customer-login.jsp">Login</a>
+				<%
+					}
+				%>
             </div>
         </div>
     </div>
@@ -49,7 +57,9 @@ justify-content: space-between;
     <div class="row" style="width:100%;">
     <div class="mb-5 col-xl-8 text-center col-12 mt-4" style="align-items:center; width:100%;">
 	<p class="text-uppercase text-muted fw-bold mb-1">Top choices</p><h3>Popular this week</h3><p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></div></div>
-
+<%
+	List<ProductCategory> li= (List<ProductCategory>) request.getAttribute("allCategories");
+%>
 <div class="row ms-4" id="store">
    <div class="mb-4 mb-lg-5 col-md-4 ms-4 ">
       <a href="viewproducts.jsp">
@@ -61,8 +71,7 @@ justify-content: space-between;
       </a>
       <div class="px-4 position-relative z-index-2 mt-3">
          <a class="text-dark text-decoration-none" href="viewproducts.jsp">
-            <h3 class="position-relative z-index-10" style="word-spacing:100vw">Black canvas bag</h3>
-            <p class="text-muted">$39.90</p>
+            <h3 class="position-relative z-index-10" style="word-spacing:100vw"><%= li.get(1).getCategoryName()%></h3>
          </a>
          <p><a role="button" tabindex="0" href="viewproducts.jsp" class="text-dark text-decoration-none px-0 btn btn-link">Shop now</a></p>
       </div>
@@ -70,8 +79,7 @@ justify-content: space-between;
    <div class="ms-auto mb-4 mb-lg-5 col-md-7">
       <div class="position-flex z-index-5 py-6">
          <a class="text-dark text-decoration-none" href="viewproducts.jsp">
-            <h3 class="position-relative z-index-10" style="word-spacing:100vw">Sweaters for her</h3>
-            <p class="text-muted">$139.90</p>
+            <h3 class="position-relative z-index-10" style="word-spacing:100vw"><%= li.get(0).getCategoryName()%></h3>
          </a>
          <p><a role="button" tabindex="0" href="viewproducts.jsp" class="text-dark text-decoration-none px-0 btn btn-link">Shop now</a></p>
       </div>
@@ -95,8 +103,7 @@ justify-content: space-between;
       </a>
       <div class="px-4 position-relative z-index-2 mt-3">
          <a class="text-dark text-decoration-none" href="viewproducts.jsp">
-            <h3 class="position-relative z-index-10" style="word-spacing:100vw">Retro sunglasses</h3>
-            <p class="text-muted">$29.90</p>
+            <h3 class="position-relative z-index-10" style="word-spacing:100vw"><%= li.get(2).getCategoryName()%></h3>
          </a>
          <p><a role="button" tabindex="0" href="viewproducts.jsp" class="text-dark text-decoration-none px-0 btn btn-link">Shop now</a></p>
       </div>
@@ -104,8 +111,7 @@ justify-content: space-between;
    <div class="mb-4 mb-lg-5 order-md-1 col-md-7">
       <div class="position-flex z-index-5 py-6">
          <a class="text-dark text-decoration-none" href="viewproducts.jsp">
-            <h3 class="position-relative z-index-10" style="word-spacing:100vw">Skeleton Tees</h3>
-            <p class="text-muted">$29.90</p>
+            <h3 class="position-relative z-index-10" style="word-spacing:100vw"><%= li.get(3).getCategoryName() %></h3>
          </a>
          <p><a role="button" tabindex="0" href="viewproducts.jsp" class="text-dark text-decoration-none px-0 btn btn-link">Shop now</a></p>
       </div>
@@ -121,7 +127,6 @@ justify-content: space-between;
    </div>
    
 </div>
-
 
 
 </body>

@@ -3,17 +3,15 @@ package com.ekart.servlets;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.ekart.DAL.ProductsDAO;
 import com.ekart.models.ProductCategory;
 
-@WebServlet("/home")
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,7 +24,7 @@ public class HomeServlet extends HttpServlet {
 		}
 		List<ProductCategory> allCategories = productsDAO.getAllCategories();
 		request.setAttribute("allCategories", allCategories);
-		request.getRequestDispatcher("Home.jsp").forward(request, response);
+		request.getRequestDispatcher("Hero.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
